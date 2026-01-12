@@ -328,15 +328,51 @@ html, body {
 .pill-dropped { background-color: #e74c3c; }   /* 棄劇 (紅) */
 
 /* 手機版響應式設計 (變成直向排列) */
+/* --- 手機版響應式設定 (加在最下面) --- */
 @media (max-width: 768px) {
-    .modal-layout { flex-direction: column; padding: 20px; }
-    .modal-left { width: 100%; max-width: 200px; margin: 0 auto; } /* 手機版圖片縮小置中 */
-    #modal-title { font-size: 1.8em; text-align: center; }
-    .modal-meta-row { text-align: center; }
+    
+    /* 1. 調整容器：減少手機版的邊距，爭取更多空間 */
+    #book-container {
+        padding: 10px; /*原本是20px，改小一點*/
+        gap: 10px;     /*原本是20px，改小一點讓卡片靠進*/
+        justify-content: space-between; /* 確保卡片平均分佈 */
+    }
+
+    /* 2. 調整卡片：變成一排兩張 */
+    .book-card {
+        /* 計算公式：(100% 寬度 - 10px 間距) / 2 
+           這樣就能剛好塞進兩張
+        */
+        width: calc(50% - 5px); 
+    }
+
+    /* 3. 調整文字大小：手機上字要小一點才不會爆版 */
+    .book-title {
+        font-size: 1em; /* 標題變小 */
+        -webkit-line-clamp: 1; /* 手機版標題若太長，強制只顯示一行 (比較整齊) */
+    }
+
+    .book-info {
+        font-size: 0.8em; /* 資訊文字變小 */
+    }
+
+    /* 4. 調整標籤 (Tag)：太擠了，手機版可以把字縮小或隱藏部分 */
+    .tag {
+        font-size: 0.7em;
+        padding: 2px 4px;
+        margin-right: 2px;
+    }
+    
+    /* 5. 調整右上角狀態徽章 */
+    .status-badge {
+        font-size: 0.7em;
+        padding: 3px 6px;
+    }
 }
 
 /* 動畫效果 */
 @keyframes zoomIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
+
 }
