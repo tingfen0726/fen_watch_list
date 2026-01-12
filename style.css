@@ -327,52 +327,140 @@ html, body {
 .pill-plan { background-color: #f39d12; }      /* 待看 (橘) */
 .pill-dropped { background-color: #e74c3c; }   /* 棄劇 (紅) */
 
-/* 手機版響應式設計 (變成直向排列) */
-/* --- 手機版響應式設定 (加在最下面) --- */
-@media (max-width: 768px) {
-    
-    /* 1. 調整容器：減少手機版的邊距，爭取更多空間 */
-    #book-container {
-        padding: 10px; /*原本是20px，改小一點*/
-        gap: 10px;     /*原本是20px，改小一點讓卡片靠進*/
-        justify-content: space-between; /* 確保卡片平均分佈 */
-    }
-
-    /* 2. 調整卡片：變成一排兩張 */
-    .book-card {
-        /* 計算公式：(100% 寬度 - 10px 間距) / 2 
-           這樣就能剛好塞進兩張
-        */
-        width: calc(50% - 5px); 
-    }
-
-    /* 3. 調整文字大小：手機上字要小一點才不會爆版 */
-    .book-title {
-        font-size: 1em; /* 標題變小 */
-        -webkit-line-clamp: 1; /* 手機版標題若太長，強制只顯示一行 (比較整齊) */
-    }
-
-    .book-info {
-        font-size: 0.8em; /* 資訊文字變小 */
-    }
-
-    /* 4. 調整標籤 (Tag)：太擠了，手機版可以把字縮小或隱藏部分 */
-    .tag {
-        font-size: 0.7em;
-        padding: 2px 4px;
-        margin-right: 2px;
-    }
-    
-    /* 5. 調整右上角狀態徽章 */
-    .status-badge {
-        font-size: 0.7em;
-        padding: 3px 6px;
-    }
-}
-
 /* 動畫效果 */
 @keyframes zoomIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 
+}
+/* --- 手機版與平板響應式設定 (請放在 CSS 檔案最下面) --- */
+@media (max-width: 768px) {
+
+    /* ====================
+       1. Header (導覽列) 大整形
+       ==================== */
+    #header {
+        flex-direction: column; /* 改成直向排列 */
+        align-items: stretch;   /* 寬度拉滿 */
+        padding: 15px;          /* 縮小內距 */
+        gap: 10px;              /* Logo 跟控制區的距離 */
+        height: auto;           /* 高度自動，因為內容變多了 */
+    }
+
+    /* Logo 置中並縮小 */
+    .logo {
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 1.3em; /* 字變小一點 */
+    }
+
+    /* 控制區：改成緊湊排列 */
+    .header-controls {
+        display: flex;
+        flex-wrap: wrap; /* 允許換行 */
+        gap: 8px;        /* 間距縮小 */
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* --- 關鍵：搜尋框獨佔一行 --- */
+    #search-input {
+        width: 100% !important; /* 強制佔滿整行 */
+        order: -1; /* 讓搜尋框跑到選單的最上面 */
+        margin-bottom: 5px; /* 跟下面的選單留點距離 */
+    }
+    #search-input:focus {
+        width: 100% !important; /* 點擊時維持滿寬 */
+    }
+
+    /* --- 關鍵：下拉選單變成 2x2 排列 --- */
+    .header-controls select {
+        /* flex-grow: 1 (自動伸展), flex-shrink: 0, flex-basis: 48% (基礎寬度) */
+        flex: 1 0 48%; 
+        max-width: 49%; /* 確保一排只塞兩個 */
+        font-size: 0.85em; /* 字體縮小 */
+        padding: 8px 5px;  /* 內距微調 */
+        text-align: center; /* 文字置中比較好看 */
+    }
+
+    /* ====================
+       2. 容器與卡片調整
+       ==================== */
+    #book-container {
+        /* 因為 Header 變高了 (搜尋框+選單)，這裡要往下推更多 */
+        margin-top: 230px; 
+        padding: 10px;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .book-card {
+        /* 一排兩張卡片，中間留 10px */
+        width: calc(50% - 5px); 
+    }
+
+    .book-title {
+        font-size: 1em;
+        -webkit-line-clamp: 1; /* 標題限制一行 */
+    }
+    
+    .book-info {
+        font-size: 0.8em;
+    }
+
+    /* 手機版隱藏 "集數" 這種比較次要的資訊，避免卡片太長 (可選) */
+    /* .book-card .book-info:nth-child(4) { display: none; } */
+
+    /* ====================
+       3. 彈跳視窗 (Modal) 優化
+       ==================== */
+    .modal-content {
+        width: 95%; /* 視窗寬度佔滿 */
+        margin: 0 auto;
+        max-height: 85vh; /* 限制高度，避免太長 */
+        overflow-y: auto; /* 內容可捲動 */
+    }
+
+    .modal-layout {
+        flex-direction: column; /* 上圖下文 */
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .modal-left {
+        width: 100%;
+        text-align: center;
+    }
+
+    #modal-img {
+        width: 140px; /* 圖片縮小，不要佔滿整個手機螢幕 */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .modal-right {
+        text-align: center; /* 文字全部置中 */
+    }
+
+    #modal-title {
+        font-size: 1.5em; /* 標題縮小 */
+    }
+
+    .modal-meta-row {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 28px;
+        background: rgba(0,0,0,0.5); /* 增加一個半透明背景 */
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+    }
 }
