@@ -135,7 +135,7 @@ html, body {
 #status-toggle-btn:active, #add-status-btn:active { transform: scale(0.95); }
 
 /* =========================================
-   7. 手機版響應式 (Mobile)
+   7. 手機版響應式 (Mobile) - 最終修正版
    ========================================= */
 @media (max-width: 768px) {
     /* --- Header 基礎設定 --- */
@@ -165,6 +165,10 @@ html, body {
     .modal-left { width: 100%; text-align: center; }
     #modal-img { width: 120px; }
     .modal-right { text-align: center; }
+    
+    /* ✨ 新增：讓評分區塊在手機版置中對齊 ✨ */
+    .modal-score-area { justify-content: center; }
+
     .form-row { grid-template-columns: 1fr; }
 
     /* --- 關閉按鈕 (無框) --- */
