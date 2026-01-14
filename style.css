@@ -135,7 +135,7 @@ html, body {
 #status-toggle-btn:active, #add-status-btn:active { transform: scale(0.95); }
 
 /* =========================================
-   7. 手機版響應式 (Mobile) - 最終修正版
+   7. 手機版響應式 (Mobile) - 標題修正版
    ========================================= */
 @media (max-width: 768px) {
     /* --- Header 基礎設定 --- */
@@ -146,19 +146,17 @@ html, body {
     /* --- 第一排：搜尋框 --- */
     #search-input { order: 1; width: 100% !important; margin-bottom: 5px; }
 
-    /* --- 第二排：四個篩選單 (圓角16px) --- */
+    /* --- 第二排：四個篩選單 --- */
     .header-controls select { order: 2; width: calc(25% - 6px); flex: none; height: 32px; padding: 0; font-size: 0.8em; text-align: center; border-radius: 16px; text-align-last: center; }
 
-    /* --- 第三排：按鈕 (Flex=1 自動填滿) --- */
+    /* --- 第三排：按鈕 --- */
     #login-btn, #add-btn { order: 3; flex: 1; width: auto; height: 38px; margin-top: 5px; display: flex; justify-content: center; align-items: center; }
-    
-    /* 按鈕間距微調 */
     #header .header-controls > button { margin-left: 5px; margin-right: 5px; }
 
-    /* --- 內容區位置 (往下推 220px) --- */
+    /* --- 內容區位置 --- */
     #book-container { margin-top: 220px; padding: 10px; gap: 10px; }
     
-    /* --- 卡片與視窗維持原樣 --- */
+    /* --- 卡片與視窗 --- */
     .book-card { width: calc(50% - 5px); }
     .modal-content { width: 95%; max-height: 90vh; overflow-y: auto; }
     .modal-layout { flex-direction: column; padding: 20px; gap: 15px; }
@@ -166,12 +164,15 @@ html, body {
     #modal-img { width: 120px; }
     .modal-right { text-align: center; }
     
-    /* ✨ 新增：讓評分區塊在手機版置中對齊 ✨ */
+    /* ✨ 修正 1：評分置中 ✨ */
     .modal-score-area { justify-content: center; }
+    
+    /* ✨ 修正 2：標題強制歸零內距 (解決歪掉問題) ✨ */
+    #modal-title { padding-right: 0 !important; }
 
     .form-row { grid-template-columns: 1fr; }
 
-    /* --- 關閉按鈕 (無框) --- */
+    /* --- 關閉按鈕 --- */
     .close-btn { top: 15px; right: 15px; background: none; border: none; border-radius: 0; width: auto; height: auto; font-size: 32px; color: #888; line-height: 1; text-align: right; }
     .close-btn:active { color: #fff; }
 }
