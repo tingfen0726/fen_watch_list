@@ -25,13 +25,13 @@ html, body {
    3. 頁首 (Header)
    ========================================= */
 #header {
-    position: fixed; top: 0; left: 0; width: 100%; min-height: 80px; 
+    position: fixed; top: 0; left: 0; width: 100%; min-height: 80px; transition: transform 0.3s ease-in-out;
     background-color: #141414; display: flex; justify-content: space-between; 
     align-items: center; padding: 10px 30px; border-bottom: 1px solid #333; z-index: 1000;
 }
 .logo { font-size: 1.5em; font-weight: bold; color: #FFFFFF; white-space: nowrap; margin-right: 20px; cursor: pointer; }
 .header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-
+.header-hide { transform: translateY(-100%); box-shadow: none; }
 /* 輸入框、下拉選單、登入按鈕共用 */
 .header-controls input, .header-controls select, #login-btn, #add-btn {
     background-color: #2F2F2F; color: #E5E5E5; border: 1px solid #404040;

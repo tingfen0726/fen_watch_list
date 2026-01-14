@@ -570,6 +570,28 @@ async function addNewDrama() {
     }
 }
 
+// --- 12. 導航列自動收合功能 (Smart Header) ---
+let lastScrollY = window.scrollY;
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // 1. 防呆機制：如果在網頁最頂端 (Safari 回彈效果)，不要亂動
+    if (currentScrollY < 0) return;
+
+    // 2. 判斷滑動方向
+    // 如果現在位置 > 上次位置 (代表往下捲) 且 捲動超過 60px (避免一動就縮)
+    if (currentScrollY > lastScrollY && currentScrollY > 60) {
+        header.classList.add('header-hide'); // 加上 class -> 往上收
+    } else {
+        header.classList.remove('header-hide'); // 移除 class -> 滑出來
+    }
+
+    // 更新上次位置
+    lastScrollY = currentScrollY;
+});
+
 async function deleteDrama(id) {
     if(!confirm('確定要刪除這部劇嗎？刪掉就沒囉！')) return;
     const { error } = await db.from('drama_list').delete().eq('id', id);
