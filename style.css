@@ -35,7 +35,7 @@ html, body {
 /* 輸入框、下拉選單、登入按鈕共用 */
 .header-controls input, .header-controls select, #login-btn, #add-btn {
     background-color: #2F2F2F; color: #E5E5E5; border: 1px solid #404040;
-    padding: 6px 15px; border-radius: 20px; font-size: 0.9em; outline: none;
+    padding: 5px 15px; border-radius: 20px; font-size: 0.9em; outline: none;
     height: 38px; transition: all 0.2s;
 }
 #search-input { width: 150px; padding-left: 15px; }
@@ -138,17 +138,36 @@ html, body {
    7. 手機版響應式 (Mobile)
    ========================================= */
 @media (max-width: 768px) {
-    #header { flex-direction: column; height: auto; padding: 15px; gap: 10px; }
-    .header-controls { width: 100%; justify-content: space-between; gap: 8px; }
-    #search-input { width: 100% !important; order: 1; margin-bottom: 5px; }
-    .header-controls select, #login-btn, #add-btn{ order: 2; flex: 1 0 48%; max-width: 49%; height: 42px; font-size: 0.85em; text-align: center; padding: 0 5px; }
-    #book-container { margin-top: 240px; padding: 10px; gap: 10px; }
+    /* --- Header 基礎設定 --- */
+    #header { flex-direction: column; height: auto; padding: 10px 15px; gap: 10px; }
+    .logo { margin: 0 0 5px 0; font-size: 1.3em; align-self: flex-start; }
+    .header-controls { width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+    /* --- 第一排：搜尋框 --- */
+    #search-input { order: 1; width: 100% !important; margin-bottom: 5px; }
+
+    /* --- 第二排：四個篩選單 (圓角16px) --- */
+    .header-controls select { order: 2; width: calc(25% - 6px); flex: none; height: 32px; padding: 0; font-size: 0.8em; text-align: center; border-radius: 16px; text-align-last: center; }
+
+    /* --- 第三排：按鈕 (Flex=1 自動填滿) --- */
+    #login-btn, #add-btn { order: 3; flex: 1; width: auto; height: 38px; margin-top: 5px; display: flex; justify-content: center; align-items: center; }
+    
+    /* 按鈕間距微調 */
+    #header .header-controls > button { margin-left: 5px; margin-right: 5px; }
+
+    /* --- 內容區位置 (往下推 220px) --- */
+    #book-container { margin-top: 220px; padding: 10px; gap: 10px; }
+    
+    /* --- 卡片與視窗維持原樣 --- */
     .book-card { width: calc(50% - 5px); }
     .modal-content { width: 95%; max-height: 90vh; overflow-y: auto; }
     .modal-layout { flex-direction: column; padding: 20px; gap: 15px; }
     .modal-left { width: 100%; text-align: center; }
-    #modal-img { width: 140px; }
+    #modal-img { width: 120px; }
     .modal-right { text-align: center; }
-    .form-row { grid-template-columns: 1fr; } /* 手機表單變單欄 */
-    .close-btn { top: 10px; right: 10px; background: rgba(0,0,0,0.5); border-radius: 50%; width: 32px; height: 32px; line-height: 30px; text-align: center; font-size: 24px; color: white; }
+    .form-row { grid-template-columns: 1fr; }
+
+    /* --- 關閉按鈕 (無框) --- */
+    .close-btn { top: 15px; right: 15px; background: none; border: none; border-radius: 0; width: auto; height: auto; font-size: 32px; color: #888; line-height: 1; text-align: right; }
+    .close-btn:active { color: #fff; }
 }
