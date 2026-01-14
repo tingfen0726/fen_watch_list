@@ -247,7 +247,9 @@ function renderViewMode(item, container) {
     }
 
     container.innerHTML = `
-        <h2 id="modal-title" style="margin-bottom:10px; color:#fff; font-size:2em;">${item.title}</h2>
+        <button onclick="closeModal()" class="close-btn" style="position: absolute; top: 15px; right: 20px; z-index: 10;">&times;</button>
+
+        <h2 id="modal-title" style="margin-bottom:10px; color:#fff; font-size:2em; padding-right: 30px;">${item.title}</h2>
         
         <div class="modal-meta-row" style="color:#4DB6AC; font-size:1.1em; margin-bottom:15px;">
             <span id="modal-year">${item.year || '未知年份'}</span> | 
@@ -436,7 +438,7 @@ function openAddModal() {
     container.innerHTML = `
         <div class="edit-mode-header">
             <span>新增劇集</span>
-            <span onclick="closeModal()" class="close-btn" style="position:static; cursor:pointer; font-size:28px;">&times;</span>
+            <button onclick="closeModal()" class="close-btn" style="position:static; font-size:24px;">&times;</button>
         </div>
 
         <div class="form-group">
